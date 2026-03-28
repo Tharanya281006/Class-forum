@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Connect | Class Group</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body data-page="group">
+    <div class="group-shell">
+      <aside class="class-list scrollable" data-sidebar>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px">
+          <h3 style="margin: 0; font-family: var(--font-display)">Joined Classes</h3>
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            <span class="knob"></span>
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-bottom: 14px">
+          <a class="btn btn-secondary" href="dashboard.html" style="padding: 8px 10px; font-size: 0.86rem">Dashboard</a>
+          <a class="btn btn-secondary" href="login.html" style="padding: 8px 10px; font-size: 0.86rem">Logout</a>
+        </div>
+
+        <div id="joinedClassList"></div>
+      </aside>
+
+      <div class="sidebar-overlay" data-overlay></div>
+
+      <section class="discussion-main">
+        <header class="discussion-header">
+          <div style="display: flex; gap: 10px; align-items: center">
+            <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle classes">☰</button>
+            <div>
+              <h2 id="groupTitle" style="margin: 0; font-family: var(--font-display)">Data Structures - A</h2>
+              <p id="groupSubtitle" style="margin: 4px 0 0; color: var(--text-secondary)">Private Class Discussion Room</p>
+            </div>
+          </div>
+          <span id="groupStatus" class="status-pill active">Session Active</span>
+        </header>
+
+        <div class="feed-area scrollable">
+          <div data-skeletons>
+            <div class="skeleton-card">
+              <div class="skeleton-line" style="width: 45%"></div>
+              <div class="skeleton-line" style="width: 90%"></div>
+              <div class="skeleton-line" style="width: 72%"></div>
+            </div>
+            <div class="skeleton-card">
+              <div class="skeleton-line" style="width: 52%"></div>
+              <div class="skeleton-line" style="width: 88%"></div>
+              <div class="skeleton-line" style="width: 68%"></div>
+            </div>
+          </div>
+
+          <div data-post-feed id="classPostFeed"></div>
+        </div>
+
+        <form class="composer-wrap" data-post-form>
+          <div class="upload-row">
+            <label class="upload-chip" for="classImage">📷 Add Image</label>
+            <input id="classImage" type="file" accept="image/*" style="display: none" />
+          </div>
+          <textarea class="textarea" placeholder="Share something with your class..."></textarea>
+          <div class="composer-actions">
+            <button class="btn btn-primary" style="width: auto" type="submit">Post Message</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="toast-host"></div>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

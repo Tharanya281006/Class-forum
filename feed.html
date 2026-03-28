@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Connect | Public Feed</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body data-page="feed">
+    <aside class="sidebar" data-sidebar>
+      <div class="logo-wrap">
+        <div class="logo-badge">CC</div>
+        <div class="logo-text">
+          <h2>Campus Connect</h2>
+          <span>Social + Class Platform</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-item active" href="feed.html">Home</a>
+        <a class="nav-item" href="friends.html">Friends</a>
+        <a class="nav-item" href="dashboard.html">Classes</a>
+        <a class="nav-item" href="login.html">Logout</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="theme-toggle-wrap">
+          <span>Dark Mode</span>
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            <span class="knob"></span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" data-overlay></div>
+
+    <main class="main-area social-main">
+      <header class="topbar">
+        <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle menu">☰</button>
+
+        <div class="search-wrap">
+          <span>🔎</span>
+          <input type="text" placeholder="Search posts, people, interests..." />
+        </div>
+
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="Notifications">
+            🔔
+            <span class="badge-dot"></span>
+          </button>
+          <a class="avatar" href="friends.html" aria-label="Profile">RK</a>
+        </div>
+      </header>
+
+      <section class="story-strip scrollable" data-stories></section>
+
+      <section class="forum-hero panel">
+        <div>
+          <h2>Student Community Forum</h2>
+          <p>Discuss internships, placement prep, DSA doubts, and project updates with your campus network.</p>
+        </div>
+        <div class="forum-filters" data-feed-filters>
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="internship">#Internship</button>
+          <button class="filter-chip" data-filter="study">#DSA</button>
+          <button class="filter-chip" data-filter="placement">#Placement</button>
+          <button class="filter-chip" data-filter="project">#Project</button>
+        </div>
+      </section>
+
+      <section class="feed-layout">
+        <div class="feed-column">
+          <div data-skeletons>
+            <div class="skeleton-card">
+              <div class="skeleton-line" style="width: 42%"></div>
+              <div class="skeleton-line" style="width: 92%"></div>
+              <div class="skeleton-line" style="width: 78%"></div>
+            </div>
+            <div class="skeleton-card">
+              <div class="skeleton-line" style="width: 50%"></div>
+              <div class="skeleton-line" style="width: 88%"></div>
+              <div class="skeleton-line" style="width: 65%"></div>
+            </div>
+          </div>
+          <div id="publicFeed"></div>
+        </div>
+
+        <aside class="suggested-panel panel" id="suggestedUsers"></aside>
+      </section>
+    </main>
+
+    <button class="fab-create" data-open-ask-modal>+ Ask Question</button>
+
+    <div class="modal" data-ask-modal>
+      <div class="modal-card">
+        <h3 class="modal-title">Create Discussion Thread</h3>
+        <p class="modal-desc">Post your internship query, study doubt, or project idea to the community.</p>
+        <form data-ask-form>
+          <input class="input" name="title" placeholder="Thread title" style="margin-bottom: 10px" />
+          <textarea class="textarea" name="content" placeholder="Write your question or update..."></textarea>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" data-close-ask-modal>Cancel</button>
+            <button type="submit" class="btn btn-primary" style="width: auto">Post Thread</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast-host"></div>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

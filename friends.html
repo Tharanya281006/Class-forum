@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Connect | Friends</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body data-page="friends">
+    <aside class="sidebar" data-sidebar>
+      <div class="logo-wrap">
+        <div class="logo-badge">CC</div>
+        <div class="logo-text">
+          <h2>Campus Connect</h2>
+          <span>Social + Class Platform</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-item" href="feed.html">Home</a>
+        <a class="nav-item active" href="friends.html">Friends</a>
+        <a class="nav-item" href="dashboard.html">Classes</a>
+        <a class="nav-item" href="login.html">Logout</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="theme-toggle-wrap">
+          <span>Dark Mode</span>
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            <span class="knob"></span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" data-overlay></div>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle menu">☰</button>
+
+        <div class="search-wrap">
+          <span>🔎</span>
+          <input id="friendSearch" type="text" placeholder="Search users by name or major..." />
+        </div>
+
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="Messages">
+            ✉
+            <span class="badge-dot"></span>
+          </button>
+          <a class="avatar" href="feed.html" aria-label="Profile">RK</a>
+        </div>
+      </header>
+
+      <section class="welcome-card" style="margin-bottom: 14px">
+        <div>
+          <h1>Build Your Campus Circle</h1>
+          <p>Discover classmates, see mutual connections, and send invites in one tap.</p>
+        </div>
+        <a class="btn btn-secondary" href="feed.html">Back to Feed</a>
+      </section>
+
+      <section class="friends-grid" id="friendsGrid"></section>
+
+      <section class="empty-state" id="friendsEmpty" style="display: none">
+        <div class="emoji">🔍</div>
+        <h3 style="margin-bottom: 6px">No users found</h3>
+        <p style="margin: 0">Try a different keyword to find more campus members.</p>
+      </section>
+    </main>
+
+    <div class="toast-host"></div>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
