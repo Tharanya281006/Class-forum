@@ -1,16 +1,363 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Class Forum</title>
-    <meta http-equiv="refresh" content="0; url=login.html" />
-    <script>
-      // Ensure immediate client-side redirect in environments where meta refresh is delayed.
-      window.location.replace("login.html");
-    </script>
-  </head>
-  <body>
-    <p>Redirecting to <a href="login.html">login page</a>...</p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Campus Connect — A premium student social and academic networking platform for collaboration, internships, DSA, projects, and study tips.">
+    <title>Campus Connect — Student Social & Academic Network</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg-blob"></div>
+<div class="bg-blob"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+    <button class="navbar__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <a href="#" class="navbar__logo" id="logoLink">
+        <div class="navbar__logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span class="navbar__logo-text">Campus<span>Connect</span></span>
+    </a>
+    <div class="navbar__search">
+        <i class="fa-solid fa-magnifying-glass navbar__search-icon"></i>
+        <input type="text" id="globalSearch" placeholder="Search posts, people, groups..." aria-label="Search">
+    </div>
+    <div class="navbar__actions">
+        <button class="navbar__icon-btn" id="notifBtn" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge">5</span>
+        </button>
+        <button class="navbar__icon-btn" id="msgBtn" title="Messages">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="badge">3</span>
+        </button>
+        <button class="navbar__invite-btn" id="inviteBtn">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Invite</span>
+        </button>
+        <button class="navbar__post-btn" id="globalPostBtn">
+            <i class="fa-solid fa-plus"></i>
+            <span>Post</span>
+        </button>
+        <div class="navbar__avatar-letter" id="navProfileBtn" title="Profile">T</div>
+    </div>
+</nav>
+
+<!-- Mobile sidebar overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="app-layout">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <nav>
+            <a href="#" class="sidebar__link active" data-section="feed">
+                <i class="fa-solid fa-house"></i><span>Feed</span>
+            </a>
+            <a href="#" class="sidebar__link" data-section="groups">
+                <i class="fa-solid fa-users"></i><span>Groups</span>
+            </a>
+            <a href="#" class="sidebar__link" data-section="profile">
+                <i class="fa-regular fa-user"></i><span>Profile</span>
+            </a>
+            <a href="#" class="sidebar__link" data-section="explore">
+                <i class="fa-regular fa-compass"></i><span>Explore</span>
+            </a>
+            <a href="#" class="sidebar__link" data-section="saved">
+                <i class="fa-regular fa-bookmark"></i><span>Saved Posts</span>
+            </a>
+            <a href="#" class="sidebar__link" data-section="notifications">
+                <i class="fa-regular fa-bell"></i><span>Notifications</span>
+            </a>
+        </nav>
+
+        <div class="sidebar__divider"></div>
+        <p class="sidebar__section-title">Your Groups</p>
+
+        <div class="sidebar__group" data-group="dsa">
+            <div class="sidebar__group-dot dsa"></div>
+            <span>DSA Class</span>
+        </div>
+        <div class="sidebar__group" data-group="internship">
+            <div class="sidebar__group-dot intern"></div>
+            <span>Internship Prep</span>
+        </div>
+        <div class="sidebar__group" data-group="project">
+            <div class="sidebar__group-dot project"></div>
+            <span>Project Hub</span>
+        </div>
+        <div class="sidebar__group" data-group="tips">
+            <div class="sidebar__group-dot tips"></div>
+            <span>Study Tips</span>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- FEED -->
+        <section class="section active" id="sectionFeed">
+            <div class="content-wrapper">
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="filter-tab active" data-filter="all">All Posts</button>
+                    <button class="filter-tab" data-filter="dsa">💻 DSA</button>
+                    <button class="filter-tab" data-filter="internship">💼 Internships</button>
+                    <button class="filter-tab" data-filter="projects">🚀 Projects</button>
+                    <button class="filter-tab" data-filter="tips">📚 Study Tips</button>
+                </div>
+
+                <div class="create-post" id="createPostBox">
+                    <div class="create-post__header">
+                        <div class="create-post__avatar-letter">T</div>
+                        <div class="create-post__prompt" id="createPostPrompt">What's on your mind? ✍️</div>
+                    </div>
+                    <div class="create-post__form" id="createPostForm">
+                        <input type="text" id="postTitle" placeholder="Post title...">
+                        <textarea id="postContent" placeholder="Share your thoughts, questions, or insights..."></textarea>
+                        <div class="create-post__image-preview" id="imagePreview">
+                            <img id="previewImg" src="" alt="Preview">
+                            <div class="remove-img" id="removeImg"><i class="fa-solid fa-xmark"></i></div>
+                        </div>
+                        <p style="font-size:0.72rem;color:var(--subtext);margin-top:12px;font-weight:600;">Select Tags</p>
+                        <div class="create-post__tags" id="tagSelect">
+                            <button class="create-post__tag-btn" data-tag="dsa">💻 DSA</button>
+                            <button class="create-post__tag-btn" data-tag="internship">💼 Internship</button>
+                            <button class="create-post__tag-btn" data-tag="projects">🚀 Projects</button>
+                            <button class="create-post__tag-btn" data-tag="tips">📚 Study Tips</button>
+                        </div>
+                        <div class="create-post__actions">
+                            <div class="create-post__media-btns">
+                                <label class="create-post__media-btn photo" title="Add Image">
+                                    <i class="fa-regular fa-image"></i>
+                                    <input type="file" id="postImage" accept="image/*" style="display:none;">
+                                </label>
+                                <button class="create-post__media-btn video" title="Video"><i class="fa-solid fa-video"></i></button>
+                                <button class="create-post__media-btn link" title="Link"><i class="fa-solid fa-link"></i></button>
+                            </div>
+                            <button class="create-post__submit" id="submitPost">
+                                <i class="fa-solid fa-paper-plane"></i> Publish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="postsFeed"></div>
+            </div>
+        </section>
+
+        <!-- GROUPS -->
+        <section class="section" id="sectionGroups">
+            <div class="content-wrapper" style="max-width:860px;">
+                <div id="groupsView">
+                    <div class="section-header">
+                        <h2>Groups</h2>
+                        <p>Join groups to collaborate with peers on shared interests</p>
+                    </div>
+                    <div class="groups-grid" id="groupsGrid"></div>
+                </div>
+                <div id="groupFeedView" style="display:none;"></div>
+            </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="section" id="sectionProfile">
+            <div class="content-wrapper" style="max-width:680px;">
+                <div class="profile-header">
+                    <div class="profile-header__banner"></div>
+                    <div class="profile-header__info">
+                        <button class="profile-header__edit"><i class="fa-regular fa-pen-to-square"></i> Edit Profile</button>
+                        <div class="profile-header__avatar-letter">T</div>
+                        <h2 class="profile-header__name">Alex Sharma</h2>
+                        <p class="profile-header__bio">🎓 CSE '26 | Full Stack Dev | DSA Enthusiast | Building cool stuff</p>
+                        <div class="profile-header__stats">
+                            <div class="profile-stat">
+                                <div class="profile-stat__val" id="profilePostCount">12</div>
+                                <div class="profile-stat__label">Posts</div>
+                            </div>
+                            <div class="profile-stat">
+                                <div class="profile-stat__val">348</div>
+                                <div class="profile-stat__label">Friends</div>
+                            </div>
+                            <div class="profile-stat">
+                                <div class="profile-stat__val">4</div>
+                                <div class="profile-stat__label">Groups</div>
+                            </div>
+                            <div class="profile-stat">
+                                <div class="profile-stat__val">1.2K</div>
+                                <div class="profile-stat__label">Likes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Daily Streak Badge -->
+                <div style="background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border:1px solid #FCD34D;border-radius:var(--radius-md);padding:14px;margin-top:20px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-sm);">
+                    <div style="font-size:1.8rem;">🔥</div>
+                    <div>
+                        <h4 style="font-size:0.85rem;font-weight:700;color:#B45309;margin-bottom:2px;">3 Day Streak!</h4>
+                        <p style="font-size:0.75rem;color:#D97706;margin:0;">You posted 3 days in a row! Keep it up!</p>
+                    </div>
+                </div>
+
+                <div class="profile-tabs" style="margin-top:24px;">
+                    <button class="profile-tab active" data-ptab="posts">Posts</button>
+                    <button class="profile-tab" data-ptab="activity">Activity</button>
+                    <button class="profile-tab" data-ptab="about">About</button>
+                </div>
+                <div id="profileContent"></div>
+            </div>
+        </section>
+
+        <!-- EXPLORE -->
+        <section class="section" id="sectionExplore">
+            <div class="content-wrapper" style="max-width:760px;">
+                <div class="section-header">
+                    <h2>🔍 Explore Topics</h2>
+                    <p>Discover trending topics and connect with the community</p>
+                </div>
+                <div class="explore-categories" id="exploreGrid"></div>
+                <div class="section-header" style="margin-top:8px;">
+                    <h2>🔥 Trending Posts</h2>
+                </div>
+                <div id="explorePosts"></div>
+            </div>
+        </section>
+
+        <!-- SAVED -->
+        <section class="section" id="sectionSaved">
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <h2>🔖 Saved Posts</h2>
+                    <p>Posts you've bookmarked for later</p>
+                </div>
+                <div id="savedContainer">
+                    <div class="empty-state">
+                        <div class="empty-state__icon">📌</div>
+                        <h3 class="empty-state__title">No saved posts yet</h3>
+                        <p class="empty-state__text">Bookmark posts from the feed to find them here</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section class="section" id="sectionNotifications">
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <h2>🔔 Notifications</h2>
+                    <p>Stay updated on what's happening</p>
+                </div>
+                <div class="notif-card" id="notifList">
+                    <div class="notif-header">
+                        <h3>Recent</h3>
+                        <button id="markAllRead">Mark all read</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== RIGHT SIDEBAR ===== -->
+    <aside class="right-sidebar">
+        <div class="widget">
+            <div class="widget__title">🔥 Trending Topics</div>
+            <div class="trending" id="trendingWidget" style="display:flex;flex-wrap:wrap;gap:8px;padding-top:10px;">
+                <button class="trend-btn" onclick="filterPosts('JavaScript')" style="background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:var(--radius-full);color:var(--text);font-size:0.8rem;transition:0.2s;">#JavaScript</button>
+                <button class="trend-btn" onclick="filterPosts('DSA')" style="background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:var(--radius-full);color:var(--text);font-size:0.8rem;transition:0.2s;">#DSA</button>
+                <button class="trend-btn" onclick="filterPosts('Internship')" style="background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:var(--radius-full);color:var(--text);font-size:0.8rem;transition:0.2s;">#Internship</button>
+                <button class="trend-btn" onclick="filterPosts('AI')" style="background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:var(--radius-full);color:var(--text);font-size:0.8rem;transition:0.2s;">#AI</button>
+            </div>
+        </div>
+        <div class="widget">
+            <div class="widget__title">👤 Suggested Friends</div>
+            <div id="suggestedWidget"></div>
+        </div>
+        <div class="widget">
+            <div class="widget__title">📅 Upcoming Events</div>
+            <div class="trending-item">
+                <span class="trending-item__rank">📌</span>
+                <div class="trending-item__info">
+                    <h4>Hackathon 2026 🚀</h4>
+                    <p>April 15 • Online</p>
+                    <a href="https://devpost.com/hackathons" target="_blank" style="font-size:0.7rem;color:var(--primary);font-weight:600;margin-top:4px;display:inline-block;">Apply Now →</a>
+                </div>
+            </div>
+            <div class="trending-item">
+                <span class="trending-item__rank">📌</span>
+                <div class="trending-item__info">
+                    <h4>DSA Workshop</h4>
+                    <p>April 22 • Lab 3</p>
+                    <a href="https://www.geeksforgeeks.org" target="_blank" style="font-size:0.7rem;color:var(--primary);font-weight:600;margin-top:4px;display:inline-block;">Join Workshop →</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- ===== INVITE MODAL ===== -->
+<div class="modal-overlay" id="inviteModal">
+    <div class="modal" style="max-width:440px;">
+        <div id="inviteStep1">
+            <div class="modal__icon">👬</div>
+            <h3 class="modal__title">Invite Friends</h3>
+            <p class="modal__text">Select friends to invite to Campus Connect</p>
+            <div class="invite-list" id="inviteList"></div>
+        </div>
+        <div id="inviteStep2" style="display:none;">
+            <div class="modal__success-icon"><i class="fa-solid fa-check"></i></div>
+            <h3 class="modal__title">Friend Invited Successfully 🎉</h3>
+            <p class="modal__text">Your invitation has been sent!</p>
+            <button class="modal__btn" id="closeInviteSuccess">Awesome!</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== POST DETAIL OVERLAY ===== -->
+<div class="post-overlay" id="postOverlay">
+    <div class="post-popup" id="postPopup"></div>
+</div>
+
+<!-- ===== GLOBAL POST MODAL ===== -->
+<div class="modal-overlay" id="globalPostModal">
+    <div class="modal" style="max-width:520px;text-align:left;">
+        <h3 class="modal__title" style="text-align:center;">Create Post</h3>
+        <p class="modal__text" style="text-align:center;">Share something with the community</p>
+        <input type="text" class="modal__input" id="gPostTitle" placeholder="Post title...">
+        <textarea class="modal__input" id="gPostContent" placeholder="What's on your mind?" style="min-height:100px;resize:vertical;height:auto;"></textarea>
+        <div style="margin-bottom:14px;">
+            <label style="font-size:0.72rem;font-weight:600;color:var(--subtext);display:block;margin-bottom:6px;">Category</label>
+            <select id="gPostCategory" class="modal__input" style="height:42px;cursor:pointer;">
+                <option value="dsa">💻 DSA</option>
+                <option value="internship">💼 Internship</option>
+                <option value="projects">🚀 Projects</option>
+                <option value="tips">📚 Study Tips</option>
+            </select>
+        </div>
+        <div style="margin-bottom:16px;">
+            <label style="font-size:0.72rem;font-weight:600;color:var(--subtext);display:block;margin-bottom:6px;">Image (optional)</label>
+            <input type="file" id="gPostImage" accept="image/*" class="modal__input" style="padding:8px 14px;">
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;">
+            <button class="modal__btn" id="gPostCancel" style="background:var(--border);color:var(--text);box-shadow:none;">Cancel</button>
+            <button class="modal__btn" id="gPostSubmit"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check" style="color:#10B981;"></i>
+    <span id="toastMsg">Action completed!</span>
+</div>
+
+<script src="app.js"></script>
+</body>
+
 </html>
